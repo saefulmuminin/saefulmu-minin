@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!project) return {};
   
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://saefulmu.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmu-minin.vercel.app";
   const projectUrl = `${baseUrl}/work/${slug}`;
   
   return {
@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://saefulmu.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmu-minin.vercel.app";
   const projectUrl = `${baseUrl}/work/${slug}`;
 
   const schema = {

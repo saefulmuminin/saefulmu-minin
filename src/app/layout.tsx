@@ -15,7 +15,8 @@ const manrope = Manrope({
   weight: ["200", "400", "600", "800"],
 });
 
-const BASE_URL = "https://saefulmuminin.dev";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL ?? "https://saeful-muminin.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -24,22 +25,28 @@ export const metadata: Metadata = {
     template: "%s | Saeful Mu'minin",
   },
   description:
-    "Full Stack Web Developer focused on building dynamic and responsive web apps using modern technologies like Laravel, React, and Next.js. Based in Jakarta, Indonesia.",
+    "Full Stack Web Developer focused on building dynamic and responsive web apps using modern technologies like Laravel, React, Next.js, and Flutter. Based in Jakarta, Indonesia.",
   keywords: [
     "Full Stack Developer", "Web Developer", "React", "Next.js",
-    "Laravel", "TypeScript", "PHP", "Jakarta", "Indonesia",
-    "Saeful Muminin", "Portfolio",
+    "Laravel", "TypeScript", "PHP", "Flutter", "Jakarta", "Indonesia",
+    "Saeful Muminin", "Portfolio", "BAZNAS",
   ],
-  authors: [{ name: "Saeful Mu'minin", url: BASE_URL }],
-  creator:  "Saeful Mu'minin",
+  authors:   [{ name: "Saeful Mu'minin", url: BASE_URL }],
+  creator:   "Saeful Mu'minin",
   publisher: "Saeful Mu'minin",
 
+  /* ── Favicon ── */
   icons: {
-    icon:     "/logo.ico",
+    icon:     [
+      { url: "/favicon.ico",  sizes: "any" },
+      { url: "/logo.ico",     sizes: "any" },
+      { url: "/logo.png",     type: "image/png", sizes: "192x192" },
+    ],
     shortcut: "/logo.ico",
-    apple:    "/logo.png",
+    apple:    { url: "/logo.png", sizes: "180x180", type: "image/png" },
   },
 
+  /* ── Open Graph (image auto-served by opengraph-image.tsx) ── */
   openGraph: {
     type:        "website",
     locale:      "en_US",
@@ -47,21 +54,13 @@ export const metadata: Metadata = {
     siteName:    "Saeful Mu'minin",
     title:       "Saeful Mu'minin — Full Stack Web Developer",
     description: "Building digital products with React, Next.js & Laravel. 4+ years of experience delivering full-stack solutions.",
-    images: [
-      {
-        url:    "/profile.png",
-        width:  1200,
-        height: 630,
-        alt:    "Saeful Mu'minin — Full Stack Web Developer",
-      },
-    ],
   },
 
+  /* ── Twitter / X ── */
   twitter: {
     card:        "summary_large_image",
     title:       "Saeful Mu'minin — Full Stack Web Developer",
     description: "Building digital products with React, Next.js & Laravel.",
-    images:      ["/profile.png"],
     creator:     "@saefulmuminin",
   },
 
