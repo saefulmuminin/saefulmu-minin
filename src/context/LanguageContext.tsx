@@ -46,6 +46,10 @@ export const translations = {
       items: [
         {
           description:
+            "Working as a Full Stack Developer at BAZNAS (Badan Amil Zakat Nasional) under the Directorate of Innovation and Information Technology. Building and maintaining internal web systems using modern full-stack technologies to support digital transformation across the organization.",
+        },
+        {
+          description:
             "Developed and maintained web applications as a freelance developer and designer. Worked on various client projects covering frontend and backend development using modern frameworks and tools.",
         },
         {
@@ -134,6 +138,10 @@ export const translations = {
     experience: {
       title: "Pengalaman",
       items: [
+        {
+          description:
+            "Bekerja sebagai Full Stack Developer di BAZNAS (Badan Amil Zakat Nasional) di bawah Direktorat Inovasi dan Teknologi Informasi. Membangun dan memelihara sistem web internal menggunakan teknologi full-stack modern untuk mendukung transformasi digital organisasi.",
+        },
         {
           description:
             "Mengembangkan dan memelihara aplikasi web sebagai pengembang dan desainer lepas. Mengerjakan berbagai proyek klien yang mencakup pengembangan frontend dan backend menggunakan framework modern.",

@@ -77,7 +77,7 @@ export default function EducationSection() {
         setMouse({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
       }}
       onMouseLeave={() => setMouse({ x: 50, y: 50 })}
-      className="relative px-16 lg:px-24 py-32 bg-surface-container-lowest overflow-hidden"
+      className="relative px-4 sm:px-8 lg:px-16 xl:px-24 py-16 sm:py-24 lg:py-32 bg-surface-container-lowest overflow-hidden"
     >
       {/* Cursor glow */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{
@@ -86,7 +86,7 @@ export default function EducationSection() {
       }} />
 
       {/* Decorative section number */}
-      <div className="absolute right-16 top-20 select-none pointer-events-none z-0" style={enter(0)}>
+      <div className="absolute right-4 sm:right-16 top-20 select-none pointer-events-none z-0" style={enter(0)}>
         <span className="font-headline font-bold text-[160px] lg:text-[220px] leading-none text-on-surface opacity-[0.025] tracking-tighter">
           06
         </span>

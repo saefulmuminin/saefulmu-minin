@@ -77,7 +77,7 @@ export default function WorkSection() {
         setMouse({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
       }}
       onMouseLeave={() => setMouse({ x: 50, y: 50 })}
-      className="relative py-32 bg-surface-container-lowest overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 bg-surface-container-lowest overflow-hidden"
     >
       {/* Cursor glow */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{
@@ -93,7 +93,7 @@ export default function WorkSection() {
       </div>
 
       {/* ── Header (padded) ── */}
-      <div className="relative z-10 px-16 lg:px-24 mb-12">
+      <div className="relative z-10 px-4 sm:px-8 lg:px-16 xl:px-24 mb-8 sm:mb-12">
         {/* Label */}
         <div style={enter(0)} className="flex items-center gap-3 mb-8">
           <span
@@ -154,8 +154,8 @@ export default function WorkSection() {
           scrollSnapType:     "x mandatory",
           scrollbarWidth:     "none",
           WebkitOverflowScrolling: "touch",
-          paddingLeft:        "calc(4rem + env(safe-area-inset-left))",   // match px-16
-          paddingRight:       "calc(4rem + env(safe-area-inset-right))",
+          paddingLeft:        "max(1rem, min(4rem, 6vw))",
+          paddingRight:       "max(1rem, min(4rem, 6vw))",
         }}
       >
         {projects.map((project, i) => (
@@ -163,8 +163,8 @@ export default function WorkSection() {
             key={project.slug}
             style={{
               ...enter(160 + i * 70),
-              flex:     "0 0 calc(50% - 10px)",
-              minWidth: "340px",
+              flex:     "0 0 min(340px, 82vw)",
+              minWidth: "260px",
               scrollSnapAlign: "start",
             }}
           >
@@ -176,7 +176,7 @@ export default function WorkSection() {
       </div>
 
       {/* ── Dot indicators ── */}
-      <div style={enter(300)} className="relative z-10 flex justify-center gap-2 mt-8 px-16">
+      <div style={enter(300)} className="relative z-10 flex justify-center gap-2 mt-6 sm:mt-8 px-4 sm:px-16">
         {projects.map((_, i) => (
           <button
             key={i}

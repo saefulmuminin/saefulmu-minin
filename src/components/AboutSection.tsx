@@ -79,7 +79,7 @@ export default function AboutSection() {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setMouse({ x: 50, y: 50 })}
-      className="relative px-16 lg:px-24 py-32 bg-surface-container-low overflow-hidden"
+      className="relative px-4 sm:px-8 lg:px-16 xl:px-24 py-16 sm:py-24 lg:py-32 bg-surface-container-low overflow-hidden"
     >
       {/* ── Cursor glow ── */}
       <div
@@ -92,7 +92,7 @@ export default function AboutSection() {
 
       {/* ── Decorative section number ── */}
       <div
-        className="absolute right-16 top-20 select-none pointer-events-none z-0"
+        className="absolute right-4 sm:right-16 top-20 select-none pointer-events-none z-0"
         style={enter(0)}
       >
         <span className="font-headline font-bold text-[160px] lg:text-[220px] leading-none text-on-surface opacity-[0.025] tracking-tighter">

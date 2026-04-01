@@ -7,14 +7,16 @@ type ExperienceItem = {
   period: string;
   title: string;
   company: string;
+  current?: boolean;
 };
 
 const experienceMeta: ExperienceItem[] = [
-  { period: "2022 — 2024",    title: "Web Developer & Designer",           company: "Besarjana ID — IT Freelancer" },
-  { period: "AUG — DEC 2023", title: "Full Stack Web Development",          company: "MSIB Rakamin Independent Study" },
-  { period: "AUG — DEC 2022", title: "3D Animation & Problem Solving",      company: "Gamelab's MSIB Independent Study" },
-  { period: "FEB — MAR 2023", title: "Junior Web Developer",                company: "Baparekraf Digital Talent (BDT)" },
-  { period: "2020 — 2023",    title: "Software Engineer & Web Developer",   company: "IT Freelancer" },
+  { period: "AUG 2024 — PRESENT", title: "Full Stack Developer",              company: "BAZNAS — Direktorat Inovasi dan Teknologi Informasi", current: true },
+  { period: "2022 — 2024",         title: "Web Developer & Designer",          company: "Besarjana ID — IT Freelancer" },
+  { period: "AUG — DEC 2023",      title: "Full Stack Web Development",        company: "MSIB Rakamin Independent Study" },
+  { period: "AUG — DEC 2022",      title: "3D Animation & Problem Solving",    company: "Gamelab's MSIB Independent Study" },
+  { period: "FEB — MAR 2023",      title: "Junior Web Developer",              company: "Baparekraf Digital Talent (BDT)" },
+  { period: "2020 — 2023",         title: "Software Engineer & Web Developer", company: "IT Freelancer" },
 ];
 
 export default function ExperienceSection() {
@@ -60,7 +62,7 @@ export default function ExperienceSection() {
         setMouse({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
       }}
       onMouseLeave={() => setMouse({ x: 50, y: 50 })}
-      className="relative px-16 lg:px-24 py-32 bg-surface overflow-hidden"
+      className="relative px-4 sm:px-8 lg:px-16 xl:px-24 py-16 sm:py-24 lg:py-32 bg-surface overflow-hidden"
     >
       {/* Cursor glow */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{
@@ -69,7 +71,7 @@ export default function ExperienceSection() {
       }} />
 
       {/* Decorative section number */}
-      <div className="absolute right-16 top-20 select-none pointer-events-none z-0" style={enter(0)}>
+      <div className="absolute right-4 sm:right-16 top-20 select-none pointer-events-none z-0" style={enter(0)}>
         <span className="font-headline font-bold text-[160px] lg:text-[220px] leading-none text-on-surface opacity-[0.025] tracking-tighter">
           04
         </span>
@@ -147,18 +149,29 @@ export default function ExperienceSection() {
                     transition: `transform 0.4s cubic-bezier(.34,1.56,.64,1) ${400 + i * 100}ms`,
                   }}
                 >
-                  <div
-                    className="w-2.5 h-2.5 rounded-full transition-all duration-300"
-                    style={{
-                      background: hoveredIdx === i ? "var(--color-primary)" : "var(--color-outline-variant)",
-                      boxShadow: hoveredIdx === i ? "0 0 0 4px rgba(255,255,255,0.08)" : "none",
-                    }}
-                  />
+                  {exp.current ? (
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
+                  ) : (
+                    <div
+                      className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                      style={{
+                        background: hoveredIdx === i ? "var(--color-primary)" : "var(--color-outline-variant)",
+                        boxShadow: hoveredIdx === i ? "0 0 0 4px rgba(255,255,255,0.08)" : "none",
+                      }}
+                    />
+                  )}
                 </div>
 
-                <p className="text-[10px] font-label uppercase tracking-[0.3em] text-outline mb-1">
-                  {exp.period}
-                </p>
+                <div className="flex items-center gap-2 mb-1">
+                  <p className="text-[10px] font-label uppercase tracking-[0.3em] text-outline">
+                    {exp.period}
+                  </p>
+                  {exp.current && (
+                    <span className="px-2 py-0.5 rounded-full text-[8px] font-label uppercase tracking-widest font-bold text-green-500 border border-green-500/30 bg-green-500/10">
+                      Now
+                    </span>
+                  )}
+                </div>
                 <h5
                   className="text-lg font-headline font-bold leading-snug mb-0.5 transition-colors duration-300"
                   style={{ color: hoveredIdx === i ? "var(--color-on-surface)" : "var(--color-primary)" }}

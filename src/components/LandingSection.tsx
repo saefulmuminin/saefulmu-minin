@@ -351,7 +351,7 @@ export default function LandingSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative min-h-screen flex flex-col px-12 py-8 bg-background overflow-hidden"
+      className="relative min-h-screen flex flex-col px-4 sm:px-8 md:px-12 py-6 sm:py-8 bg-background overflow-hidden"
     >
       {/* ── Coding-themed animated background ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -500,7 +500,7 @@ export default function LandingSection() {
       {/* Headline block — mouse-reactive parallax */}
       <div
         ref={headlineRef}
-        className="relative mt-8 max-w-2xl"
+        className="relative mt-6 sm:mt-8 max-w-2xl"
         onMouseEnter={() => setHlHover(true)}
         onMouseLeave={() => { setHlHover(false); setHlMouse({ x: 50, y: 50 }); }}
         onMouseMove={(e) => {
@@ -540,7 +540,7 @@ export default function LandingSection() {
           {/* Line 1 — shallow depth */}
           <div style={{ transform: `translate(${(hlMouse.x - 50) * 0.10}px,${(hlMouse.y - 50) * 0.06}px)`, transition: "transform 0.22s ease-out" }}>
             <span
-              className="block text-4xl lg:text-5xl xl:text-[58px] text-on-surface-variant"
+              className="block text-3xl sm:text-4xl lg:text-5xl xl:text-[58px] text-on-surface-variant"
               style={{ animation: "slideUpFade 0.55s ease 0.05s both" }}
             >
               {t.landing.h1}
@@ -550,7 +550,7 @@ export default function LandingSection() {
           {/* Line 2 — deepest depth, most movement, glows on hover */}
           <div style={{ transform: `translate(${(hlMouse.x - 50) * 0.22}px,${(hlMouse.y - 50) * 0.13}px)`, transition: "transform 0.16s ease-out" }}>
             <span
-              className="block text-5xl lg:text-6xl xl:text-[72px]"
+              className="block text-4xl sm:text-5xl lg:text-6xl xl:text-[72px]"
               style={{
                 backgroundImage: isDark
                   ? "linear-gradient(110deg, #ef4444 0%, #f97316 40%, #ec4899 80%)"
@@ -574,7 +574,7 @@ export default function LandingSection() {
           {/* Line 3 — medium depth */}
           <div style={{ transform: `translate(${(hlMouse.x - 50) * 0.15}px,${(hlMouse.y - 50) * 0.09}px)`, transition: "transform 0.19s ease-out" }}>
             <span
-              className="relative block text-4xl lg:text-5xl xl:text-[58px] text-primary"
+              className="relative block text-3xl sm:text-4xl lg:text-5xl xl:text-[58px] text-primary"
               style={{ animation: "slideUpFade 0.65s ease 0.2s both" }}
             >
               {t.landing.h3}
@@ -634,7 +634,7 @@ export default function LandingSection() {
         {/* CTA buttons */}
         <div style={{ transform: `translate(${(hlMouse.x - 50) * 0.04}px,${(hlMouse.y - 50) * 0.03}px)`, transition: "transform 0.30s ease-out" }}>
           <div
-            className="mt-8 flex gap-3"
+            className="mt-6 sm:mt-8 flex flex-wrap gap-3"
             style={{ animation: "slideUpFade 0.6s ease 0.46s both" }}
           >
             <a
@@ -655,36 +655,37 @@ export default function LandingSection() {
       </div>
 
       {/* Images + Stats */}
-      <div className="relative mt-10 flex flex-col gap-8">
+      <div className="relative mt-8 sm:mt-10 flex flex-col gap-6 sm:gap-8">
 
-        {/* Horizontal image row — click for 3D view */}
-        <div className="flex gap-3 items-end">
+        {/* Horizontal image row — click for 3D view, show 2 on mobile, 4 on sm+ */}
+        <div className="flex gap-2 sm:gap-3 items-end">
           {([
-            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuA4kncwFsaksBy5GPVA8TG6r_VQrW-fUWtSSyNpl1kf8Tegu0ND9iIC2tO7_hmaebeA3WSZGujZC1IhaG3NnlIpElsh4GyKwwxtC6ztCUK4qXmRpX1oS-MSOdtHe_sc5Ja4DVfsrptzvSMbzpIAoxYdPZANG_Tyw8WE6ll9ojlIYfnefIwH_C4MO_wSUKLoQeGpBeENPLanaZnBHK6XLdO749c8iQWpvrQyZ404tcF9bMkdgjr6wrnfKszwHDoFY-Iptcy-MFfLUQ", rotate: "-rotate-[3deg]", shift: "mb-0", gray: true  },
-            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAjzbQlmS4CuwNysdaWEGWvmZQWrxcJUiWlP25NFl_qryeYnJKY7jPjZTIghmgasc9OIaiU-KjrRzcz8Q0r6cPB45HghA6zTRkFci0JMYrqpE17NZ7kkQKRo225LvvptWvh8J4W6T9XPShl6IRxzJ-JKJlSL7A4kSbvStnfhf2wJ4WiS9yXSfrcjG3pY1fI7WKaY-mCgTOXmAEdMiHnt443fnnubw7wKqudTgMZAamjZL3MGKlHErKGQk_0_6AceYCGDukOVhwOzg", rotate: "-rotate-[1deg]", shift: "mb-4", gray: true  },
-            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCdwVkq3eaHkBLKY9_yWUiiA2X4sGT96uf-VG1-07ezoJjr3vTb2y8wBLB4P_KAacqEDkonyVCvxdLGhztUGKI4qI_UfHVxbXGkf8aalEH9ns8pUC9pWOTSxicDlw2YYDY4-wRpxvDqN6LjGis9r3D-vbuO6FJ_8sdRIp_Lo4En5K1yr6ICN9nbosvtsHamz3WV0pyn_gEP28W-_JXUNy9NYDGFF-ova5sZqoN5UhUDi_SpodHT3l9h2kB5NwxxnDobHBhEnK3HnA", rotate: "rotate-[1.5deg]",  shift: "mb-8", gray: false },
-            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuA4kncwFsaksBy5GPVA8TG6r_VQrW-fUWtSSyNpl1kf8Tegu0ND9iIC2tO7_hmaebeA3WSZGujZC1IhaG3NnlIpElsh4GyKwwxtC6ztCUK4qXmRpX1oS-MSOdtHe_sc5Ja4DVfsrptzvSMbzpIAoxYdPZANG_Tyw8WE6ll9ojlIYfnefIwH_C4MO_wSUKLoQeGpBeENPLanaZnBHK6XLdO749c8iQWpvrQyZ404tcF9bMkdgjr6wrnfKszwHDoFY-Iptcy-MFfLUQ", rotate: "rotate-[3deg]",   shift: "mb-2", gray: true  },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuA4kncwFsaksBy5GPVA8TG6r_VQrW-fUWtSSyNpl1kf8Tegu0ND9iIC2tO7_hmaebeA3WSZGujZC1IhaG3NnlIpElsh4GyKwwxtC6ztCUK4qXmRpX1oS-MSOdtHe_sc5Ja4DVfsrptzvSMbzpIAoxYdPZANG_Tyw8WE6ll9ojlIYfnefIwH_C4MO_wSUKLoQeGpBeENPLanaZnBHK6XLdO749c8iQWpvrQyZ404tcF9bMkdgjr6wrnfKszwHDoFY-Iptcy-MFfLUQ", rotate: "-rotate-[3deg]", shift: "mb-0", gray: true,  mobileHide: false },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAjzbQlmS4CuwNysdaWEGWvmZQWrxcJUiWlP25NFl_qryeYnJKY7jPjZTIghmgasc9OIaiU-KjrRzcz8Q0r6cPB45HghA6zTRkFci0JMYrqpE17NZ7kkQKRo225LvvptWvh8J4W6T9XPShl6IRxzJ-JKJlSL7A4kSbvStnfhf2wJ4WiS9yXSfrcjG3pY1fI7WKaY-mCgTOXmAEdMiHnt443fnnubw7wKqudTgMZAamjZL3MGKlHErKGQk_0_6AceYCGDukOVhwOzg", rotate: "-rotate-[1deg]", shift: "mb-4", gray: true,  mobileHide: false },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCdwVkq3eaHkBLKY9_yWUiiA2X4sGT96uf-VG1-07ezoJjr3vTb2y8wBLB4P_KAacqEDkonyVCvxdLGhztUGKI4qI_UfHVxbXGkf8aalEH9ns8pUC9pWOTSxicDlw2YYDY4-wRpxvDqN6LjGis9r3D-vbuO6FJ_8sdRIp_Lo4En5K1yr6ICN9nbosvtsHamz3WV0pyn_gEP28W-_JXUNy9NYDGFF-ova5sZqoN5UhUDi_SpodHT3l9h2kB5NwxxnDobHBhEnK3HnA", rotate: "rotate-[1.5deg]",  shift: "mb-8", gray: false, mobileHide: true  },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuA4kncwFsaksBy5GPVA8TG6r_VQrW-fUWtSSyNpl1kf8Tegu0ND9iIC2tO7_hmaebeA3WSZGujZC1IhaG3NnlIpElsh4GyKwwxtC6ztCUK4qXmRpX1oS-MSOdtHe_sc5Ja4DVfsrptzvSMbzpIAoxYdPZANG_Tyw8WE6ll9ojlIYfnefIwH_C4MO_wSUKLoQeGpBeENPLanaZnBHK6XLdO749c8iQWpvrQyZ404tcF9bMkdgjr6wrnfKszwHDoFY-Iptcy-MFfLUQ", rotate: "rotate-[3deg]",   shift: "mb-2", gray: true,  mobileHide: true  },
           ] as const).map((img, i) => (
-            <ProjectCard
-              key={i}
-              src={img.src}
-              rotate={img.rotate}
-              shift={img.shift}
-              gray={img.gray}
-              index={i}
-              onOpen={setActiveImg}
-            />
+            <div key={i} className={img.mobileHide ? "hidden sm:contents" : "contents"}>
+              <ProjectCard
+                src={img.src}
+                rotate={img.rotate}
+                shift={img.shift}
+                gray={img.gray}
+                index={i}
+                onOpen={setActiveImg}
+              />
+            </div>
           ))}
         </div>
 
         {/* Stats row */}
-        <div className="flex gap-14">
+        <div className="flex flex-wrap gap-8 sm:gap-14">
           <div>
-            <p className="font-headline text-7xl font-bold text-primary leading-none">4+</p>
+            <p className="font-headline text-5xl sm:text-7xl font-bold text-primary leading-none">4+</p>
             <p className="text-sm text-on-surface-variant mt-2">{t.landing.yearsExp}</p>
           </div>
           <div>
-            <p className="font-headline text-7xl font-bold text-primary leading-none">5x</p>
+            <p className="font-headline text-5xl sm:text-7xl font-bold text-primary leading-none">5x</p>
             <p className="text-sm text-on-surface-variant mt-2">{t.landing.programs}</p>
           </div>
         </div>
