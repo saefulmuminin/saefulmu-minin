@@ -15,12 +15,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!project) return {};
   
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmu-minin.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.dev";
   const projectUrl = `${baseUrl}/work/${slug}`;
+  const absoluteImageUrl = `${baseUrl}${project.image}`;
   
   return {
     title: `${project.title} — Saeful Mu'minin`,
-    description: project.description,
+    description: project.description.id,
     keywords: [...project.tags, project.category, "portfolio", "project"],
     authors: [{ name: "Saeful Mu'minin" }],
     creator: "Saeful Mu'minin",
@@ -37,11 +38,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       locale: "id_ID",
       url: projectUrl,
       title: `${project.title} — Saeful Mu'minin Portfolio`,
-      description: project.description,
+      description: project.description.id,
       siteName: "Saeful Mu'minin",
       images: [
         {
-          url: project.image,
+          url: absoluteImageUrl,
           width: 1200,
           height: 630,
           alt: project.imageAlt,
@@ -52,9 +53,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: {
       card: "summary_large_image",
       title: `${project.title} — Saeful Mu'minin`,
-      description: project.description,
+      description: project.description.id,
       creator: "@saefulmu",
-      images: [project.image],
+      images: [absoluteImageUrl],
     },
     alternates: {
       canonical: projectUrl,
@@ -67,18 +68,19 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmu-minin.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.dev";
   const projectUrl = `${baseUrl}/work/${slug}`;
+  const absoluteImageUrl = `${baseUrl}${project.image}`;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "@id": projectUrl,
     name: project.title,
-    description: project.description,
+    description: project.description.id,
     image: {
       "@type": "ImageObject",
-      url: project.image,
+      url: absoluteImageUrl,
       width: 1200,
       height: 630,
       alt: project.imageAlt,

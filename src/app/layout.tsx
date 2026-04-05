@@ -16,7 +16,7 @@ const manrope = Manrope({
 });
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ?? "https://saeful-muminin.vercel.app";
+  process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
