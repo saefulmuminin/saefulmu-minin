@@ -1,16 +1,23 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const runtime = "edge";
+// Using the default Node.js runtime allows for static generation of OG images
+
 export const alt = "Saeful Mu'minin — Full Stack Web Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  // Load profile image as ArrayBuffer
-  // Note: Using relative path from src/app/opengraph-image.tsx to public/profile.png
-  const profileImageData = await fetch(
-    new URL("../../public/profile.png", import.meta.url)
-  ).then((res) => res.arrayBuffer());
+  // Load profile image from filesystem instead of fetch to support static generation
+  const profileImageBuffer = await readFile(
+    join(process.cwd(), "public/profile.png")
+  );
+  const profileImageArrayBuffer = profileImageBuffer.buffer.slice(
+    profileImageBuffer.byteOffset,
+    profileImageBuffer.byteOffset + profileImageBuffer.byteLength
+  );
+
 
   return new ImageResponse(
     (
@@ -237,9 +244,10 @@ export default async function Image() {
             }}
           >
             <img
-              src={profileImageData as any}
-              width="360"
-              height="360"
+              src={profileImageArrayBuffer as unknown as string}
+              alt="Saeful Mu'minin"
+              width={360}
+              height={360}
               style={{
                 objectFit: "cover",
                 objectPosition: "top",
