@@ -24,20 +24,31 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  openGraph: {
-    title: "Portfolio Proyek & Digital Products — Saeful Mu'minin",
-    description: "Koleksi aplikasi web dan mobile full-stack yang dikembangkan oleh Saeful Mu'minin di Jakarta, Indonesia.",
-    url: `${baseUrl}/work`,
-    siteName: "Saeful Mu'minin",
-    locale: "id_ID",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Portfolio Proyek — Saeful Mu'minin",
-    description: "Showcase proyek digital inovatif oleh Saeful Mu'minin, Full Stack Developer berbasis di Jakarta.",
-    creator: "@saefulmuminin",
-  },
+    openGraph: {
+      title: "Portfolio Proyek & Digital Products — Saeful Mu'minin",
+      description: "Koleksi aplikasi web dan mobile full-stack yang dikembangkan oleh Saeful Mu'minin di Jakarta, Indonesia.",
+      url: `${baseUrl}/work`,
+      siteName: "Saeful Mu'minin",
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: `${baseUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "Saeful Mu'minin Portfolio",
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Portfolio Proyek — Saeful Mu'minin",
+      description: "Showcase proyek digital inovatif oleh Saeful Mu'minin, Full Stack Developer berbasis di Jakarta.",
+      creator: "@saefulmuminin",
+      images: [`${baseUrl}/opengraph-image`],
+    },
+
 };
 
 export default function Page() {

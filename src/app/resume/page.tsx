@@ -30,6 +30,15 @@ export const metadata: Metadata = {
     siteName: "Saeful Mu'minin",
     locale: "id_ID",
     type: "profile",
+    images: [
+      {
+        url: `${baseUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Resume Saeful Mu'minin",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +46,9 @@ export const metadata: Metadata = {
     description:
       "Profil profesional dan keahlian teknis Saeful Mu'minin, Full Stack Developer berbasis di Jakarta.",
     creator: "@saefulmuminin",
+    images: [`${baseUrl}/opengraph-image`],
   },
+
 };
 
 export default function ResumePage() {
