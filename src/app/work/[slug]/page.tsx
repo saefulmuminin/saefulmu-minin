@@ -18,6 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.dev";
   const projectUrl = `${baseUrl}/work/${slug}`;
   const absoluteImageUrl = `${baseUrl}${project.image}`;
+  const isPng = project.image.toLowerCase().endsWith(".png");
+  const imageType = isPng ? "image/png" : "image/jpeg";
   
   return {
     title: `${project.title} — Saeful Mu'minin`,
@@ -46,10 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           width: 1200,
           height: 630,
           alt: project.imageAlt,
-          type: "image/jpeg",
+          type: imageType,
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title: `${project.title} — Saeful Mu'minin`,
