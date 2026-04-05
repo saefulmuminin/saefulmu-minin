@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
-const educationData = [
+export const educationData = [
   {
     period:      { en: "2020 — 2024", id: "2020 — 2024" },
     degree:      { en: "Bachelor of Computer Engineering Informatics", id: "Sarjana Teknik Informatika Komputer" },
@@ -158,11 +158,11 @@ export default function EducationSection() {
               >
                 {/* Animated dot */}
                 <div
-                  className="absolute left-0 top-5 -translate-x-1/2"
-                  style={{
-                    transform: `translateX(-50%) scale(${visible ? 1 : 0})`,
-                    transition: `transform 0.4s cubic-bezier(.34,1.56,.64,1) ${400 + i * 100}ms`,
-                  }}
+                   className="absolute left-0 top-5 -translate-x-1/2"
+                   style={{
+                     transform: `translateX(-50%) scale(${visible ? 1 : 0})`,
+                     transition: `transform 0.4s cubic-bezier(.34,1.56,.64,1) ${400 + i * 100}ms`,
+                   }}
                 >
                   <div
                     className="w-2.5 h-2.5 rounded-full transition-all duration-300"

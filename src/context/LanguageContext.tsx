@@ -40,6 +40,8 @@ export const translations = {
     },
     work: {
       title: "Selected Works",
+      title1: "Selected",
+      title2: "Works.",
     },
     experience: {
       title: "Experience",
@@ -76,6 +78,13 @@ export const translations = {
     skills: {
       label: "Technical Stack",
     },
+    landing3d: {
+      hint: "Drag to rotate · Click outside to close",
+      alt: "3D project view",
+      backLabel: "Full Stack Project",
+      view3d: "3D View",
+      viewProjectDetail: "View Project Detail",
+    },
     contact: {
       heading: "Let's build something great together.",
       sub: "Open for freelance projects, collaborations, and full-time opportunities.",
@@ -89,6 +98,33 @@ export const translations = {
       skills: "Skills",
       contact: "Contact",
     },
+    common: {
+      backToHome: "Back to Home",
+      seeAll: "See All",
+      seeAllWorks: "See All Works",
+      projects: "Projects",
+      items: "Items",
+      noProjects: "No projects found",
+      back: "Back",
+      viewProject: "View Project",
+    },
+    allProjects: {
+      title: "All Projects",
+      description: "Browse through my complete portfolio of projects, ranging from Landing Pages, Fintech, Government systems, to Internal Tools and more.",
+      all: "All",
+    },
+    projectDetail: {
+      overview: "Overview",
+      problem: "The Problem",
+      solution: "The Solution",
+      features: "Key Features",
+      technologies: "Technologies",
+      role: "Role",
+      duration: "Duration",
+      year: "Year",
+      livePreview: "Live Preview",
+      viewSource: "View Source",
+    },
     heroSections: {
       home:       { label: "",              title: "",                         desc: "" },
       about:      { label: "About Me",      title: "Hey, I'm Saeful",          desc: "" },
@@ -97,6 +133,17 @@ export const translations = {
       skills:     { label: "Tech Stack",    title: "My Technologies",          desc: "React, Next.js, TypeScript, Laravel & a growing toolkit of modern tech." },
       education:  { label: "Education",     title: "Educational Background",   desc: "Continuous learner — always evolving with the craft." },
       contact:    { label: "Let's Connect", title: "Let's Collaborate",        desc: "Open to collaborations, opportunities & interesting conversations." },
+    },
+    resume: {
+      back: "Back to Portfolio",
+      download: "Download PDF",
+      print: "Print Resume",
+      contact: "Contact Information",
+      summary: "Professional Summary",
+      experience: "Work Experience",
+      education: "Education",
+      skills: "Technical Skills",
+      projects: "Key Projects",
     },
   },
   id: {
@@ -134,6 +181,8 @@ export const translations = {
     },
     work: {
       title: "Karya Pilihan",
+      title1: "Karya",
+      title2: "Pilihan.",
     },
     experience: {
       title: "Pengalaman",
@@ -170,6 +219,13 @@ export const translations = {
     skills: {
       label: "Keahlian Teknis",
     },
+    landing3d: {
+      hint: "Geser untuk memutar · Klik di luar untuk menutup",
+      alt: "Tampilan proyek 3D",
+      backLabel: "Proyek Full Stack",
+      view3d: "Tampilan 3D",
+      viewProjectDetail: "Lihat Detail Proyek",
+    },
     contact: {
       heading: "Ayo buat sesuatu yang luar biasa bersama.",
       sub: "Terbuka untuk proyek lepas, kolaborasi, dan peluang penuh waktu.",
@@ -183,6 +239,33 @@ export const translations = {
       skills: "Keahlian",
       contact: "Kontak",
     },
+    common: {
+      backToHome: "Kembali ke Beranda",
+      seeAll: "Lihat Semua",
+      seeAllWorks: "Lihat Semua Karya",
+      projects: "Proyek",
+      items: "Item",
+      noProjects: "Proyek tidak ditemukan",
+      back: "Kembali",
+      viewProject: "Lihat Proyek",
+    },
+    allProjects: {
+      title: "Semua Proyek",
+      description: "Jelajahi portofolio lengkap saya, mulai dari Landing Page, Fintech, Sistem Pemerintahan, hingga Internal Tool dan lainnya.",
+      all: "Semua",
+    },
+    projectDetail: {
+      overview: "Ikhtisar",
+      problem: "Masalah",
+      solution: "Solusi",
+      features: "Fitur Utama",
+      technologies: "Teknologi",
+      role: "Peran",
+      duration: "Durasi",
+      year: "Tahun",
+      livePreview: "Pratinjau Langsung",
+      viewSource: "Lihat Kode",
+    },
     heroSections: {
       home:       { label: "",                title: "",                    desc: "" },
       about:      { label: "Tentang Saya",    title: "Hei, Saya Saeful",    desc: "" },
@@ -191,6 +274,17 @@ export const translations = {
       skills:     { label: "Teknologi",       title: "Teknologi Saya",      desc: "React, Next.js, TypeScript, Laravel & toolkit modern yang terus berkembang." },
       education:  { label: "Pendidikan",      title: "Latar Pendidikan",    desc: "Pelajar yang terus berkembang — selalu berevolusi bersama keahlian." },
       contact:    { label: "Ayo Terhubung",   title: "Ayo Berkolaborasi",   desc: "Terbuka untuk kolaborasi, peluang & percakapan yang menarik." },
+    },
+    resume: {
+      back: "Kembali ke Portofolio",
+      download: "Unduh PDF",
+      print: "Cetak Resume",
+      contact: "Informasi Kontak",
+      summary: "Ringkasan Profesional",
+      experience: "Pengalaman Kerja",
+      education: "Pendidikan",
+      skills: "Keahlian Teknis",
+      projects: "Proyek Pilihan",
     },
   },
 };
@@ -212,7 +306,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved === "en" || saved === "id") setLangState(saved);
+    if (saved === "en" || saved === "id") {
+      setTimeout(() => setLangState(saved), 0);
+    }
   }, []);
 
   const setLang = (l: Lang) => {

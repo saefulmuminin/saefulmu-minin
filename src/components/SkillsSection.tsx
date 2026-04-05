@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 type Skill = {
@@ -66,10 +67,12 @@ function SkillIcon({ skill }: { skill: Skill }) {
     );
   }
   return (
-    <img
+    <Image
       src={DI(skill.icon)}
       alt={skill.name}
-      className={`w-5 h-5 object-contain shrink-0${skill.darkInvert ? " dark:invert dark:brightness-200" : ""}`}
+      width={20}
+      height={20}
+      className={`object-contain shrink-0${skill.darkInvert ? " dark:invert dark:brightness-200" : ""}`}
       onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
     />
   );

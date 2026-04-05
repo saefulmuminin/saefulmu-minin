@@ -32,7 +32,8 @@ export default function Sidebar() {
     const el        = itemRefs.current[active];
     const container = containerRef.current;
     if (el && container) {
-      setIndicatorTop(el.getBoundingClientRect().top - container.getBoundingClientRect().top);
+      const top = el.getBoundingClientRect().top - container.getBoundingClientRect().top;
+      setIndicatorTop(top);
       setIndicatorReady(true);
     }
   }, [active]);
@@ -41,7 +42,7 @@ export default function Sidebar() {
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     const dark  = saved ? saved === "dark" : true;
-    setIsDark(dark);
+    setTimeout(() => setIsDark(dark), 0);
     document.documentElement.classList.toggle("dark", dark);
   }, []);
 
@@ -55,7 +56,7 @@ export default function Sidebar() {
   // ── Active section tracking ──
   useEffect(() => {
     if (pathname.startsWith("/work")) {
-      setActive("work");
+      setTimeout(() => setActive("work"), 0);
       return;
     }
     const threshold = window.innerHeight * 0.35;

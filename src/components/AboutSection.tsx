@@ -60,7 +60,7 @@ export default function AboutSection() {
   });
 
   const info = [
-    { icon: "person",      label: t.about.name,       value: "Saeful Mu'minin" },
+    { icon: "person",      label: t.about.name,       value: "Saeful Mu&apos;minin" },
     { icon: "mail",        label: t.about.email,       value: "saeful2026027@gmail.com" },
     { icon: "phone",       label: t.about.phone,       value: "(+62) 857-9886-4579" },
     { icon: "location_on", label: t.about.location,    value: t.about.locationVal },
@@ -169,7 +169,7 @@ export default function AboutSection() {
               className="mt-8 border-l-2 border-primary/40 pl-5"
             >
               <p className="text-sm text-on-surface-variant/70 italic leading-relaxed">
-                "Clean code, intentional design — building things that actually matter."
+                &ldquo;Clean code, intentional design &mdash; building things that actually matter.&rdquo;
               </p>
             </div>
           </div>

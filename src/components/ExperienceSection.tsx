@@ -3,14 +3,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
-type ExperienceItem = {
+export type ExperienceItem = {
   period: string;
   title: string;
   company: string;
   current?: boolean;
 };
 
-const experienceMeta: ExperienceItem[] = [
+export const experienceMeta: ExperienceItem[] = [
   { period: "AUG 2024 — PRESENT", title: "Full Stack Developer",              company: "BAZNAS — Direktorat Inovasi dan Teknologi Informasi", current: true },
   { period: "2022 — 2024",         title: "Web Developer & Designer",          company: "Besarjana ID — IT Freelancer" },
   { period: "AUG — DEC 2023",      title: "Full Stack Web Development",        company: "MSIB Rakamin Independent Study" },

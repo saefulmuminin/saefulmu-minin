@@ -1,19 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import ProjectCard from "@/components/ProjectCard";
+import Link from "next/link";
 import { projects } from "@/data/projects";
 
 export default function WorkSection() {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
-  const sliderRef  = useRef<HTMLDivElement>(null);
 
   const [visible, setVisible]     = useState(false);
   const [mouse, setMouse]         = useState({ x: 50, y: 50 });
-  const [activeIdx, setActiveIdx] = useState(0);
-
   // Scroll reveal
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -23,41 +21,6 @@ export default function WorkSection() {
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, []);
-
-  // Track active card from scroll position
-  const onSliderScroll = useCallback(() => {
-    const el = sliderRef.current;
-    if (!el) return;
-    const cards = Array.from(el.children) as HTMLElement[];
-    let closest = 0;
-    let minDist  = Infinity;
-    cards.forEach((card, i) => {
-      const dist = Math.abs(card.offsetLeft - el.scrollLeft);
-      if (dist < minDist) { minDist = dist; closest = i; }
-    });
-    setActiveIdx(closest);
-  }, []);
-
-  // Navigate via arrows
-  const scrollTo = (idx: number) => {
-    const el = sliderRef.current;
-    if (!el) return;
-    const card = el.children[idx] as HTMLElement | undefined;
-    if (card) el.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
-  };
-
-  const prev = () => scrollTo(Math.max(0, activeIdx - 1));
-  const next = () => scrollTo(Math.min(projects.length - 1, activeIdx + 1));
-
-  // Keyboard nav when section is focused
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft")  prev();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  });
 
   const enter = (delay: number): React.CSSProperties => ({
     opacity:   visible ? 1 : 0,
@@ -105,92 +68,93 @@ export default function WorkSection() {
           </span>
         </div>
 
-        {/* Headline + counter */}
+        {/* Headline */}
         <div className="flex justify-between items-end">
           <h3 style={enter(60)} className="font-headline text-5xl lg:text-7xl font-bold tracking-tight leading-none">
-            <span className="text-on-surface">Selected</span>
+            <span className="text-on-surface">{t.work.title1}</span>
             <br />
             <span className="relative inline-block" style={{ WebkitTextStroke: "1px var(--color-outline-variant)" }}>
-              <span className="text-transparent">Works.</span>
+              <span className="text-transparent">{t.work.title2}</span>
               <span
                 className="absolute inset-0 text-on-surface/10 overflow-hidden"
                 style={{
                   clipPath:   visible ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
                   transition: "clip-path 1s cubic-bezier(.22,1,.36,1) 300ms",
                 }}
-              >Works.</span>
+              >{t.work.title2}</span>
             </span>
           </h3>
-
-          {/* Arrows */}
-          <div style={enter(100)} className="flex items-center gap-3 self-end mb-3">
-            <button
-              onClick={prev}
-              disabled={activeIdx === 0}
-              className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-on-surface transition-all duration-200 disabled:opacity-25"
-            >
-              <span className="material-symbols-outlined text-[18px]">arrow_back</span>
-            </button>
-            <span className="text-xs font-label tabular-nums text-outline">
-              {String(activeIdx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+          
+          <div style={enter(100)} className="mb-3 flex flex-col items-end sm:flex-row sm:items-center gap-4">
+            <span className="text-sm font-label text-outline uppercase tracking-wider hidden sm:block">
+              {projects.length} {t.common.projects}
             </span>
-            <button
-              onClick={next}
-              disabled={activeIdx === projects.length - 1}
-              className="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-on-surface transition-all duration-200 disabled:opacity-25"
+            <Link
+              href="/work"
+              className="group flex items-center gap-2 text-xs sm:text-sm font-label uppercase tracking-wider px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-high hover:border-outline transition-all text-on-surface"
             >
-              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-            </button>
+              {t.common.seeAll}
+              <span className="material-symbols-outlined text-[16px] sm:text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* ── Slider (full-bleed, no padding so cards peek at edges) ── */}
-      <div
-        ref={sliderRef}
-        onScroll={onSliderScroll}
-        className="relative z-10 flex gap-5 overflow-x-scroll"
-        style={{
-          scrollSnapType:     "x mandatory",
-          scrollbarWidth:     "none",
-          WebkitOverflowScrolling: "touch",
-          paddingLeft:        "max(1rem, min(4rem, 6vw))",
-          paddingRight:       "max(1rem, min(4rem, 6vw))",
-        }}
-      >
-        {projects.map((project, i) => (
+      {/* ── Sliders (full-bleed, independent rows) ── */}
+      <div className="flex flex-col gap-6 sm:gap-8">
+        {/* Top Row */}
+        <div
+          className="relative z-10 flex gap-5 overflow-x-auto pb-4"
+          style={{
+            scrollbarWidth: "none",
+            WebkitOverflowScrolling: "touch",
+            paddingLeft: "max(1rem, min(4rem, 6vw))",
+            paddingRight: "max(1rem, min(4rem, 6vw))",
+          }}
+        >
+          {projects.slice(0, 15).map((project, i) => (
+            <div
+              key={project.slug}
+              style={{
+                ...enter(160 + i * 50),
+                flex: "0 0 min(340px, 82vw)",
+                minWidth: "260px",
+              }}
+            >
+              <ProjectCard project={project} index={i} />
+            </div>
+          ))}
+          <div style={{ flex: "0 0 1px" }} />
+        </div>
+
+        {/* Bottom Row */}
+        {projects.length > 15 && (
           <div
-            key={project.slug}
+            className="relative z-10 flex gap-5 overflow-x-auto pb-4"
             style={{
-              ...enter(160 + i * 70),
-              flex:     "0 0 min(340px, 82vw)",
-              minWidth: "260px",
-              scrollSnapAlign: "start",
+              scrollbarWidth: "none",
+              WebkitOverflowScrolling: "touch",
+              paddingLeft: "max(1rem, min(4rem, 6vw))",
+              paddingRight: "max(1rem, min(4rem, 6vw))",
             }}
           >
-            <ProjectCard project={project} index={i} />
+            {projects.slice(15, 30).map((project, i) => (
+              <div
+                key={project.slug}
+                style={{
+                  ...enter(260 + i * 50),
+                  flex: "0 0 min(340px, 82vw)",
+                  minWidth: "260px",
+                }}
+              >
+                <ProjectCard project={project} index={15 + i} />
+              </div>
+            ))}
+            <div style={{ flex: "0 0 1px" }} />
           </div>
-        ))}
-        {/* Trailing spacer so last card isn't flush */}
-        <div style={{ flex: "0 0 1px" }} />
+        )}
       </div>
 
-      {/* ── Dot indicators ── */}
-      <div style={enter(300)} className="relative z-10 flex justify-center gap-2 mt-6 sm:mt-8 px-4 sm:px-16">
-        {projects.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollTo(i)}
-            className="transition-all duration-300"
-            style={{
-              width:        activeIdx === i ? "24px" : "6px",
-              height:       "6px",
-              borderRadius: "3px",
-              background:   activeIdx === i ? "var(--color-primary)" : "var(--color-outline-variant)",
-            }}
-          />
-        ))}
-      </div>
     </section>
   );
 }

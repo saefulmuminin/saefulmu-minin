@@ -1,0 +1,56 @@
+
+> personal-website@0.1.0 lint
+> eslint
+
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/AboutSection.tsx
+  172:17  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  172:88  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/HeroSection.tsx
+  256:38  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/HeroSection.tsx:256:38
+  254 |       <aside
+  255 |         ref={sideRef}
+> 256 |         onMouseMove={handleMouseMove(sideRef)}
+      |                                      ^^^^^^^ Passing a ref to a function may read its value during render
+  257 |         onMouseLeave={() => setMouse((m) => ({ ...m, inside: false }))}
+  258 |         className="hidden lg:block fixed left-4 top-4 bottom-4 w-[360px] overflow-hidden bg-surface border border-outline-variant/30 dark:bg-black dark:border-white/5 rounded-3xl z-40 shadow-2xl"
+  259 |       >  react-hooks/refs
+  303:40  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/HeroSection.tsx:303:40
+  301 |         <aside
+  302 |           ref={sideRef2}
+> 303 |           onMouseMove={handleMouseMove(sideRef2)}
+      |                                        ^^^^^^^^ Passing a ref to a function may read its value during render
+  304 |           onMouseLeave={() => setMouse((m: typeof mouse) => ({ ...m, inside: false }))}
+  305 |           className="absolute inset-0 overflow-hidden bg-surface dark:bg-black"
+  306 |           style={{                                                                                react-hooks/refs
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/LandingSection.tsx
+  333:7  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  337:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/ProjectCard.tsx
+  31:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/ProjectDetail.tsx
+  68:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/ProjectDetailContent.tsx
+  113:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/src/components/SkillsSection.tsx
+  69:5  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/l-2024-diti-0101/Desktop/github-iful/personal/transform.js
+  9:1  warning  'code' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 11 problems (4 errors, 7 warnings)
+

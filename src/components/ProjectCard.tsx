@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { type Project } from "@/data/projects";
+import { useLanguage } from "@/context/LanguageContext";
 
 export type { Project };
 
@@ -13,6 +15,7 @@ export default function ProjectCard({
   project: Project;
   index:   number;
 }) {
+  const { t, lang } = useLanguage();
   const [hover, setHover] = useState(false);
   const num = String(index + 1).padStart(3, "0");
 
@@ -26,10 +29,11 @@ export default function ProjectCard({
     >
       {/* ── Image ── */}
       <div className="aspect-video relative overflow-hidden shrink-0">
-        <img
+        <Image
           src={project.image}
           alt={project.imageAlt}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
           style={{
             filter:     hover ? "grayscale(0)"  : "grayscale(0.7)",
             transform:  hover ? "scale(1.06)"   : "scale(1)",
@@ -54,7 +58,7 @@ export default function ProjectCard({
         >
           <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white text-[10px] font-label uppercase tracking-widest">
             <span className="material-symbols-outlined text-[14px]">open_in_full</span>
-            View Project
+            {t.common.viewProject}
           </div>
         </div>
 
@@ -89,7 +93,7 @@ export default function ProjectCard({
         </div>
 
         <p className="text-sm text-on-surface-variant leading-relaxed line-clamp-2">
-          {project.description}
+          {project.description[lang]}
         </p>
 
         <div className="flex flex-wrap gap-1.5 mt-auto pt-3">

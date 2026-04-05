@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { type Project } from "./ProjectCard";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProjectDetail({
   project,
@@ -10,6 +12,7 @@ export default function ProjectDetail({
   project: Project | null;
   onClose: () => void;
 }) {
+  const { t, lang } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -17,7 +20,7 @@ export default function ProjectDetail({
       requestAnimationFrame(() => setMounted(true));
       document.body.style.overflow = "hidden";
     } else {
-      setMounted(false);
+      setTimeout(() => setMounted(false), 0);
       document.body.style.overflow = "";
     }
     return () => { document.body.style.overflow = ""; };
@@ -34,7 +37,7 @@ export default function ProjectDetail({
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-end justify-center"
+      className="fixed inset-0 z-200 flex items-end justify-center"
       style={{
         background:    mounted ? "rgba(0,0,0,0.75)" : "rgba(0,0,0,0)",
         backdropFilter: mounted ? "blur(10px)" : "blur(0px)",
@@ -63,17 +66,18 @@ export default function ProjectDetail({
 
           {/* Hero image */}
           <div className="relative aspect-video overflow-hidden">
-            <img
+            <Image
               src={project.image}
               alt={project.imageAlt}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
               style={{
                 transform:  mounted ? "scale(1)"    : "scale(1.06)",
                 filter:     mounted ? "blur(0px)"   : "blur(6px)",
                 transition: "transform 0.7s cubic-bezier(.22,1,.36,1) 0.1s, filter 0.7s ease 0.1s",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-surface-container-low via-transparent to-transparent" />
 
             {/* Floating category badge */}
             <span
@@ -117,7 +121,7 @@ export default function ProjectDetail({
 
             {/* Description */}
             <p className="text-on-surface-variant leading-relaxed mb-8">
-              {project.description}
+              {project.description[lang]}
             </p>
 
             {/* Problem / Solution grid */}
@@ -128,9 +132,9 @@ export default function ProjectDetail({
               >
                 <p className="text-[9px] font-label uppercase tracking-[0.35em] text-outline mb-2 flex items-center gap-2">
                   <span className="w-3 h-px" style={{ background: project.color }} />
-                  Problem
+                  {t.projectDetail.problem}
                 </p>
-                <p className="text-sm text-on-surface-variant leading-relaxed">{project.problem}</p>
+                <p className="text-sm text-on-surface-variant leading-relaxed">{project.problem[lang]}</p>
               </div>
               <div
                 className="p-5 rounded-2xl border"
@@ -138,9 +142,9 @@ export default function ProjectDetail({
               >
                 <p className="text-[9px] font-label uppercase tracking-[0.35em] text-outline mb-2 flex items-center gap-2">
                   <span className="w-3 h-px" style={{ background: project.color }} />
-                  Solution
+                  {t.projectDetail.solution}
                 </p>
-                <p className="text-sm text-on-surface-variant leading-relaxed">{project.solution}</p>
+                <p className="text-sm text-on-surface-variant leading-relaxed">{project.solution[lang]}</p>
               </div>
             </div>
 
@@ -148,10 +152,10 @@ export default function ProjectDetail({
             <div className="mb-8">
               <p className="text-[9px] font-label uppercase tracking-[0.35em] text-outline mb-4 flex items-center gap-2">
                 <span className="w-3 h-px" style={{ background: project.color }} />
-                Key Features
+                {t.projectDetail.features}
               </p>
               <ul className="space-y-3">
-                {project.features.map((f, i) => (
+                {project.features[lang].map((f: string, i: number) => (
                   <li key={i} className="flex items-start gap-3">
                     <span
                       className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
@@ -167,7 +171,7 @@ export default function ProjectDetail({
             <div className="mb-8">
               <p className="text-[9px] font-label uppercase tracking-[0.35em] text-outline mb-4 flex items-center gap-2">
                 <span className="w-3 h-px" style={{ background: project.color }} />
-                Tech Stack
+                {t.projectDetail.technologies}
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -194,7 +198,7 @@ export default function ProjectDetail({
                     style={{ background: project.color, color: "#fff" }}
                   >
                     <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                    Live Demo
+                    {t.projectDetail.livePreview}
                   </a>
                 )}
                 {project.githubUrl && project.githubUrl !== "#" && (
@@ -206,7 +210,7 @@ export default function ProjectDetail({
                     style={{ borderColor: "var(--color-outline-variant)" }}
                   >
                     <span className="material-symbols-outlined text-[16px]">code</span>
-                    Source Code
+                    {t.projectDetail.viewSource}
                   </a>
                 )}
               </div>
