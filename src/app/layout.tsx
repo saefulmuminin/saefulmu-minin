@@ -16,7 +16,7 @@ const manrope = Manrope({
 });
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.dev";
+  process.env.NEXT_PUBLIC_BASE_URL ?? "https://saefulmuminin.my.id";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -68,6 +68,10 @@ export const metadata: Metadata = {
     google: "BPJo2YxNhz3OgXYlrinewH1s6WK9-2yvmEBYq9eHgGs",
   },
 
+  alternates: {
+    canonical: BASE_URL,
+  },
+
   robots: {
     index:  true,
     follow: true,
@@ -97,6 +101,31 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
         <Script id="theme-init" strategy="beforeInteractive">{`(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})();`}</Script>
+        <Script
+          id="json-ld-person"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Saeful Mu'minin",
+              url: BASE_URL,
+              jobTitle: "Full Stack Web Developer",
+              description:
+                "Full Stack Web Developer focused on building dynamic and responsive web apps using Laravel, React, Next.js, and Flutter. Based in Jakarta, Indonesia.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Jakarta",
+                addressCountry: "ID",
+              },
+              sameAs: [
+                "https://github.com/saefulmuminin",
+                "https://linkedin.com/in/saefulmuminin",
+              ],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>
