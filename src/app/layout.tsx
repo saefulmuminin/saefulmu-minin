@@ -64,6 +64,10 @@ export const metadata: Metadata = {
     creator:     "@saefulmuminin",
   },
 
+  verification: {
+    google: "BPJo2YxNhz3OgXYlrinewH1s6WK9-2yvmEBYq9eHgGs",
+  },
+
   robots: {
     index:  true,
     follow: true,

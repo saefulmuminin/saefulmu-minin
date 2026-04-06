@@ -71,7 +71,7 @@ export default function CustomCursor() {
       {/* Inner dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] transition-transform duration-75"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-9999 transition-transform duration-75"
         style={{
           background: isDark ? "#ef4444" : "#18181b",
           boxShadow: isDark
@@ -83,7 +83,7 @@ export default function CustomCursor() {
       {/* Outer ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-9 h-9 rounded-full pointer-events-none z-[9998] transition-[width,height,border-color,box-shadow] duration-200"
+        className="fixed top-0 left-0 w-9 h-9 rounded-full pointer-events-none z-9998 transition-[width,height,border-color,box-shadow] duration-200"
         style={{
           border: isDark
             ? "1.5px solid rgba(239,68,68,0.6)"

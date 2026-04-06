@@ -268,7 +268,7 @@ export default function FloatingTechBalls() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none overflow-hidden z-[25]"
+      className="fixed inset-0 pointer-events-none overflow-hidden z-25"
       style={{ perspective: "700px", perspectiveOrigin: "50% 40%" }}
     />
   );

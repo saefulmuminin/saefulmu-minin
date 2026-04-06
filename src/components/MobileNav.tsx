@@ -7,7 +7,7 @@ const navItems = [
 
 export default function MobileNav() {
   return (
-    <div className="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/90 backdrop-blur-md z-[100] border-t border-outline-variant/10 px-6 py-4 flex justify-around items-center">
+    <div className="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/90 backdrop-blur-md z-100 border-t border-outline-variant/10 px-6 py-4 flex justify-around items-center">
       {navItems.map((item) => (
         <a
           key={item.href}

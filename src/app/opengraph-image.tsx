@@ -85,7 +85,6 @@ export default async function Image() {
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            zIndex: 10,
           }}
         >
           {/* Status Label */}
@@ -216,7 +215,6 @@ export default async function Image() {
             height: "400px",
             position: "relative",
             marginRight: "20px",
-            zIndex: 20,
           }}
         >
           {/* Subtle Glow Behind Image */}
